@@ -1,14 +1,22 @@
 # TagForge
 
 <p align="left">
-  <a href="https://www.buymeacoffee.com/yourusername" target="_blank">
+  <a href="https://buymeacoffee.com/sddhaiti" target="_blank">
     <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="25" />
+  </a>
+  <a href="https://github.com/dsdhaiti/TagForge" target="_blank">
+    <img src="https://img.shields.io/badge/View%20on%20GitHub-181717?logo=github&logoColor=white&style=for-the-badge" alt="View on GitHub" />
   </a>
 </p>
 
 TagForge is an [Obsidian](https://obsidian.md/) plugin that automatically generates unique tags for your notes and manages a tag index for each project subfolder. This helps you reference and organize your notes more efficiently within your vault.
 
 ---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=white&style=for-the-badge" alt="TypeScript Badge"/>
+  <img src="https://img.shields.io/badge/Obsidian%20API-483699?logo=obsidian&logoColor=white&style=for-the-badge" alt="Obsidian API Badge"/>
+</p>
 
 ## Features
 
@@ -29,7 +37,7 @@ TagForge is an [Obsidian](https://obsidian.md/) plugin that automatically genera
 ## Feature Requests & Issues
 
 <p align="center">
-  <a href="https://github.com/your-repo/tagforge/issues/new" target="_blank">
+  <a href="https://github.com/dsdhaiti/TagForge/issues" target="_blank">
     <img src="https://img.shields.io/badge/Create%20New%20Issue-blue?logo=github&style=for-the-badge" alt="Create New Issue" />
   </a>
 </p>
