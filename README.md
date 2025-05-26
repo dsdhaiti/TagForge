@@ -1,94 +1,109 @@
-# Obsidian Sample Plugin
+# TagForge
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+TagForge is an [Obsidian](https://obsidian.md/) plugin that automatically generates unique tags for your notes and manages a tag index for each project subfolder. This helps you reference and organize your notes more efficiently within your vault.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+---
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+## Features
 
-## First time developing plugins?
+-   **Automatic Tag Generation:**  
+    Generates a unique tag (first 7 characters of a SHA-512 hash) for each note, inserted at the top of the file just like Git.
 
-Quick starting guide for new plugin devs:
+-   **Status Bar Integration:**  
+    Displays the tag for the active note in the status bar. If no tag exists, a "Generate Tag" button is shown.
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+-   **Per-Folder Tag Manager:**  
+    Maintains a `tag-manager.md` file in each first-level subfolder, listing all tags and their corresponding notes as Obsidian wiki links.
 
-## Releasing new releases
+-   **Automatic Tag Removal:**  
+    If a tag is removed from a note, the corresponding entry is also removed from the folder's tag manager.
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+---
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+## Usage
 
-## Adding your plugin to the community plugin list
+1. **Open any note** in a subfolder of your vault.
+2. **Check the status bar** at the bottom of Obsidian:
+    - If the note already has a tag (e.g., `#tag-abcdef1` at the top), it will be displayed.
+    - If not, a "Generate Tag" button will appear.
+3. **Click "Generate Tag"** to insert a tag at the top of your note.
+4. The plugin will automatically update (or create) a `tag-manager.md` file in the first-level subfolder, listing all tags and their associated notes as links.
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+---
 
-## How to use
+## Installation
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+1. **Manual Installation**
 
-## Manually installing the plugin
+    1. Download or clone this repository.
+    2. Copy the `TagForge` folder into your vault's `.obsidian/plugins/` directory.
+    3. Make sure the folder contains `main.ts`, `manifest.json`, and this `README.md`.
+    4. Enable the plugin in Obsidian's Settings → Community Plugins.
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+2. **From Obsidian Community Plugins (when available)**
+    - Search for "TagForge" in the Community Plugins browser and install it directly.
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+---
 
-## Funding URL
+## Tag Manager File
 
-You can include funding URLs where people who use your plugin can financially support it.
+-   Located at:  
+    `<YourVault>/<FirstSubfolder>/tag-manager.md`
+-   Format (one entry per note):
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+### 1. Generating a Tag
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
-```
+-   Open `Experiment1.md` in Obsidian.
+-   Click the **"Generate Tag"** button in the status bar.
+-   The plugin inserts a tag at the top of the note:
 
-If you have multiple URLs, you can also do:
+    ```
+    #tag-1a2b3c4
+    ```
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
+### 2. Tag Manager File
 
-## API Documentation
+-   The plugin creates or updates `Research/tag-manager.md` with an entry for each tagged note in the folder:
 
-See https://github.com/obsidianmd/obsidian-api
+    ```
+    #tag-1a2b3c4 - [[Experiment1]]
+    #tag-4d5e6f7 - [[Experiment2]]
+    ```
+
+-   Each entry links the tag to the corresponding note using Obsidian's wiki link format.
+
+### 3. Removing a Tag
+
+-   If you delete the tag line from `Experiment1.md`, the plugin will automatically remove its entry from `tag-manager.md`.
+
+---
+
+This workflow ensures every note in your project folder can be uniquely referenced and easily found via the tag manager file.
+
+---
+
+## Limitations
+
+-   Only works for notes inside subfolders (not root-level notes).
+-   Only one tag per note is managed.
+-   The tag manager is created per first-level subfolder.
+
+---
+
+## Contributing
+
+Pull requests and suggestions are welcome!  
+Please open an issue or submit a PR on [GitHub](https://github.com/your-repo/tagforge) (replace with your actual repo link).
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Author
+
+Created by [sddhaiti]()  
+[Obsidian](https://obsidian.md)

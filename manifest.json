@@ -1,7 +1,7 @@
 {
 	"id": "sample-plugin",
 	"name": "TagForge",
-	"version": "2.0.0",
+	"version": "0.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "Generates a tag ID for for new notes that lets you reference the given note",
 	"author": "sddhaiti",
