@@ -26,6 +26,14 @@ TagForge is an [Obsidian](https://obsidian.md/) plugin that automatically genera
 
 ---
 
+## Feature Requests & Issues
+
+<p align="center">
+  <a href="https://github.com/your-repo/tagforge/issues/new" target="_blank">
+    <img src="https://img.shields.io/badge/Create%20New%20Issue-blue?logo=github&style=for-the-badge" alt="Create New Issue" />
+  </a>
+</p>
+
 ## Usage
 
 1. **Open any note** in a subfolder of your vault.
