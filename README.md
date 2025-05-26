@@ -1,5 +1,11 @@
 # TagForge
 
+<p align="left">
+  <a href="https://www.buymeacoffee.com/yourusername" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="25" />
+  </a>
+</p>
+
 TagForge is an [Obsidian](https://obsidian.md/) plugin that automatically generates unique tags for your notes and manages a tag index for each project subfolder. This helps you reference and organize your notes more efficiently within your vault.
 
 ---
