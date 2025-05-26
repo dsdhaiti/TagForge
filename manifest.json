@@ -1,10 +1,10 @@
 {
 	"id": "sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
+	"name": "TagForge",
+	"version": "2.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
+	"description": "Generates a tag ID for for new notes that lets you reference the given note",
+	"author": "sddhaiti",
 	"authorUrl": "https://obsidian.md",
 	"fundingUrl": "https://obsidian.md/pricing",
 	"isDesktopOnly": false
