@@ -81,13 +81,19 @@ export default class ExamplePlugin extends Plugin{
         const tagManagerFileName = "tag-manager.md";
         const tagManagerPath = normalizePath(`${subfolder}/${tagManagerFileName}`);
 
-        // Try to get the tag manager file
-        let tagManagerFile = this.app.vault.getAbstractFileByPath(tagManagerPath) as TFile;
+        const abstractFile = this.app.vault.getAbstractFileByPath(tagManagerPath);
+        if (abstractFile instanceof TFile) {
+            let tagManagerFile = abstractFile;
+            // safe to use tagManagerFile as a TFile
+        } else {
+            // handle the case where the file doesn't exist or isn't a TFile
+        }
+
         let lines: string[] = [];
 
-        if (tagManagerFile) {
+        if (abstractFile instanceof TFile) {
             // Read existing lines
-            const content = await this.app.vault.read(tagManagerFile);
+            const content = await this.app.vault.read(abstractFile);
             lines = content.split('\n').filter(line => line.trim().length > 0);
             // Remove any existing line for this file
             lines = lines.filter(line => !line.includes(`[[${file.basename}]]`));
@@ -99,8 +105,8 @@ export default class ExamplePlugin extends Plugin{
         }
 
         // Write back to the tag manager file
-        if (tagManagerFile) {
-            await this.app.vault.modify(tagManagerFile, lines.join('\n'));
+        if (abstractFile instanceof TFile) {
+            await this.app.vault.modify(abstractFile, lines.join('\n'));
         } else if (tag) {
             // Only create the file if there's a tag to add
             await this.app.vault.create(tagManagerPath, lines.join('\n'));
